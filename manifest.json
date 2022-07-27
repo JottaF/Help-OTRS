@@ -1,0 +1,32 @@
+{
+    "manifest_version": 3,
+    "name": "Scarab Otrs",
+    "description": "",
+    "version": "0.1",
+    "content_scripts": [
+        {
+            "matches": ["https://suportedti.agu.gov.br/*"],
+            "css": ["style.css"],
+            "js": ["index.js"]
+        }
+    ],
+    "permissions": [
+        "activaTab",
+        "scripting"
+    ],
+    "action": {
+        "default_title": "Scarab Otrs",
+        "default_icon": {
+          "16": "/images/logo.png",
+          "32": "/images/logo.png",
+          "48": "/images/logo.png",
+          "128": "/images/logo.png"
+        }
+    },
+    "icons": {
+        "16": "/images/logo.png",
+        "32": "/images/logo.png",
+        "48": "/images/logo.png",
+        "128": "/images/logo.png"
+    }
+}
