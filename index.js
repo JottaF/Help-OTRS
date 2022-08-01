@@ -3,6 +3,7 @@
 if (document.readyState == "loading") document.addEventListener('DOMContentLoaded', init)
 else init()
 
+
 function init() {
     var isIcAdded = false
     var isCorrectPage = false
@@ -21,10 +22,36 @@ function init() {
 
     if (isCorrectPage && !isIcAdded) {
         const body = document.getElementsByTagName('body')[0]
+        const head = document.getElementsByTagName('head')[0]
+
+        head.insertAdjacentHTML('beforeend',
+        `
+        <script>
+            function getTicket() {
+                const ticket = window.location.href.split('TicketID=')[1]
+                
+                if (ticket.length > 6) {
+                    return ticket.slice(0,6)
+                }
+                const tk = getChallengeToken()
+                console.log(ticket,tk)
+            
+                return ticket
+            }
+            
+            function getChallengeToken() {
+                const logoutButton = document.getElementsByClassName('LogoutButton')[0]
+                const challengeToken = logoutButton.href.toString().split('ChallengeToken=')[1]
+                return challengeToken.replace(';','')
+            }
+        </script>
+        `
+        )
+
         body.insertAdjacentHTML('afterbegin', 
         `
         <link rel="stylesheet" href="style.css">
-        <div class="alert">
+        <div class="alert" onclick=getTicket>
             <h1 class="icon">!</h1>
             <span class="span">
                 IC não associado
@@ -32,4 +59,22 @@ function init() {
         </div>
         `)
     }
+}
+
+function getTicket() {
+    const ticket = window.location.href.split('TicketID=')[1]
+    
+    if (ticket.length > 6) {
+        return ticket.slice(0,6)
+    }
+    const tk = getChallengeToken()
+    console.log(ticket,tk)
+
+    return ticket
+}
+
+function getChallengeToken() {
+    const logoutButton = document.getElementsByClassName('LogoutButton')[0]
+    const challengeToken = logoutButton.href.toString().split('ChallengeToken=')[1]
+    return challengeToken.replace(';','')
 }

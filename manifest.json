@@ -1,8 +1,9 @@
 {
     "manifest_version": 3,
     "name": "Scarab Otrs",
-    "description": "",
-    "version": "0.1",
+    "description": "Ferramenta de alerta para o Otrs",
+    "version": "0.8.2",
+    "author":"João Felipe Lima",
     "content_scripts": [
         {
             "matches": ["https://suportedti.agu.gov.br/*"],
@@ -11,7 +12,7 @@
         }
     ],
     "permissions": [
-        "activaTab",
+        "activeTab",
         "scripting"
     ],
     "action": {

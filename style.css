@@ -10,7 +10,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: .5rem;
+    padding: .3rem;
     transition: all .5s;
     color: white;
     gap: 2rem;
@@ -19,14 +19,14 @@
 }
 
 .alert:hover {
-    width: 11rem;
+    width: 14rem;
     justify-content: start;
     transition: all .3s;
     gap: 1rem
 }
 
 .icon {
-    font-size: 70px;
+    font-size: 55px;
     font-family: fantasy;
     margin-left: 2rem;
     margin-top: .7rem;
@@ -44,8 +44,10 @@
 .span {
     visibility: hidden;
     overflow: hidden;
-    font-size: 26px;
-    font-family: fantasy;
+    font-size: 19px;
+    font-family: sans-serif;
+    font-weight: 600;
+    white-space: nowrap;
 }
 
 .icon {
