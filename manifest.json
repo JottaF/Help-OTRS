@@ -2,7 +2,7 @@
     "manifest_version": 3,
     "name": "Scarab Otrs",
     "description": "Ferramenta de alerta para o Otrs",
-    "version": "0.8.2",
+    "version": "0.9.9",
     "author":"João Felipe Lima",
     "content_scripts": [
         {
