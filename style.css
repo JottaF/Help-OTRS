@@ -2,6 +2,7 @@
     width: 4rem;
     height: 4rem;
     background-color: #003583;
+    text-decoration: none;
     position: fixed;
     right: 2rem;
     bottom: 1.5rem;
@@ -33,6 +34,8 @@
     margin-left: 2rem;
     margin-top: .7rem;
     font-weight: 100;
+    text-decoration: none;
+    color: white;
 }
 
 .alert:hover .icon {
@@ -50,75 +53,8 @@
     font-family: sans-serif;
     font-weight: 600;
     white-space: nowrap;
-}
-
-.icPanel {
-    width: 14rem;
-    height: 6.5rem;
-    background-color: #003583;
-    position: fixed;
-    right: 2rem;
-    bottom: 7rem;
-    z-index: 999;
-    border-radius: .5rem;
-    flex-direction: column;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    transition: all .5s;
-    color: white;
-    padding: .4rem;
-    
-    -webkit-box-shadow: -2px 4px 10px 4px rgba(0,0,0,0.31); 
-    box-shadow: -2px 4px 10px 4px rgba(0,0,0,0.31);
-}
-
-.icPanel .header .title {
-    color:white;
-    font-size: 20px;
-    font-family: sans-serif;
-    font-weight: 600;
-    white-space: nowrap;
-    margin:0.3rem;
-}
-
-.icPanel .options {
-    flex: 1;
-    justify-content: space-between;
-}
-
-.icPanel .options .button {
-    font-size: 13px;
-    width: 6.7rem;
-    margin-right: 0;
-    margin-left: 0.1rem;
-    margin-top: 0.2rem;
-    background-color: #f1f1f1;
-    color: black;
-    border: none;
-    border-radius: 0.15rem;
-}
-
-.icPanel .options .button a {
-    color: black;
-    font-size: 12px;
-    font-weight: bold;
     text-decoration: none;
-}
-
-.icPanelAdded {
-    width: 14rem;
-    justify-content: start;
-    transition: all .3s;
-    gap: 1rem;
-}
-
-.turnSpanVisible {
-    visibility: visible;
-}
-
-.moveIcon {
-    margin-left: 1rem;
+    color: white;
 }
 
 .icon {
@@ -148,71 +84,3 @@
     95% { transform: translate(-1px, -1px) rotate(1deg); }
     100% { transform: translate(1px, -2px) rotate(-1deg); }
 }
-
-.loading {
-    width: 100vw;
-    height: 100vh;
-    justify-content: center;
-    align-items: center;
-    display: flex;
-    background-color: #0000008f;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 999;
-}
- 
-.loader {
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    display: inline-block;
-    position: relative;
-    border: 3px solid;
-    border-color: #fff #fff transparent transparent;
-    box-sizing: border-box;
-    animation: rotation 1s linear infinite;
-}
-.loader::after,
-.loader::before {
-    content: '';  
-    box-sizing: border-box;
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    margin: auto;
-    border: 3px solid;
-    border-color: transparent transparent #fff #fff;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    box-sizing: border-box;
-    animation: rotationBack 0.5s linear infinite;
-    transform-origin: center center;
-}
-.loader::before {
-    width: 32px;
-    height: 32px;
-    border-color: #fff #fff transparent transparent;
-    animation: rotation 1.5s linear infinite;
-}
-      
-@keyframes rotation {
-    0% {
-      transform: rotate(0deg);
-    }
-    100% {
-      transform: rotate(360deg);
-    }
-} 
-@keyframes rotationBack {
-    0% {
-      transform: rotate(0deg);
-    }
-    100% {
-      transform: rotate(-360deg);
-    }
-}
-      
