@@ -10,12 +10,10 @@ function init() {
 
     var isIcAdded = icVerifier(content)
     var isCorrectPage = pageVerifier()
-    var isIcPage = isIcPageVerifier()
-
-    console.log(isCorrectPage && !isIcAdded,isCorrectPage,isIcAdded);
+    var isIcPage = icPageVerifier()
 
     if (isCorrectPage && !isIcAdded) addAlert()
-    if (isIcPage) setTimeout(addIc, 2000)
+    if (isIcPage) setTimeout(addIc, 1000)
 }
 
 function getTicket() {
@@ -45,11 +43,6 @@ function getChallengeToken() {
 function addAlert() {
     const body = document.getElementsByTagName('body')[0]
     const head = document.getElementsByTagName('head')[0]
-    
-    head.insertAdjacentHTML('afterbegin', 
-    `
-    <script>${injectPanel}</scrip
-    `)
 
     body.insertAdjacentHTML('afterbegin', 
     `
@@ -81,14 +74,12 @@ function icVerifier(content) {
             if (content[i].getElementsByTagName('h2')[0]?.textContent.toString().includes('ConfigItem')) {
                 isIcAdded = true
             }
-        }  catch (error) {
-            console.log(error);
-        }
+        }  catch {}
     }
     return isIcAdded
 }
 
-function isIcPageVerifier() {
+function icPageVerifier() {
     try {
         return document.getElementsByTagName('h1')[0].textContent.includes('Gerenciar links para Chamado#')
     }   catch (error) {
@@ -100,6 +91,14 @@ function addIc() {
     if (document.getElementsByClassName('MessageBox Info').length == 0){
         document.getElementById('LinkTargetKeys').click()
         document.getElementById('AddLinks').click()
+
+        const body = document.getElementsByTagName('body')[0]
+        body.insertAdjacentHTML('afterbegin', 
+        `
+        <div class="loading">
+            <span class="loader"></span>
+        </div>
+        `)
     } else {
         window.close()
     }
@@ -127,12 +126,12 @@ function injectPanel() {
                 <h2 class="title">Adicionar IC</h2>
             </div>
             <div class="options">
-                <button class="button"><a href="https://suportedti.agu.gov.br/otrs/index.pl?ChallengeToken=${challengeToken}&Action=AgentLinkObject&Mode=Normal&SourceObject=Ticket&SourceKey=${ticket}&TargetIdentifier=ITSMConfigItem%3A%3A139&SEARCH%3A%3ANumber=&SEARCH%3A%3AName=biblioteca&SubmitSearch=Procurar&TypeIdentifier=AlternativeTo%3A%3ASource&SubmitLink=Procurar" target="_blanck">Bib. Software</a></button>
-                <button class="button"><a href="https://suportedti.agu.gov.br/otrs/index.pl?ChallengeToken=${challengeToken}&Action=AgentLinkObject&Mode=Normal&SourceObject=Ticket&SourceKey=${ticket}&TargetIdentifier=ITSMConfigItem%3A%3A168&SEARCH%3A%3ANumber=&SEARCH%3A%3AName=SDFURA0031&SubmitSearch=Procurar&TypeIdentifier=AlternativeTo%3A%3ASource&SubmitLink=Procurar" target="_blanck">Reset de senha</a></button>
-                <button class="button"><a href="https://suportedti.agu.gov.br/otrs/index.pl?ChallengeToken=${challengeToken}&Action=AgentLinkObject&Mode=Normal&SourceObject=Ticket&SourceKey=${ticket}&TargetIdentifier=ITSMConfigItem%3A%3A168&SEARCH%3A%3ANumber=&SEARCH%3A%3AName=SDF0432&SubmitSearch=Procurar&TypeIdentifier=AlternativeTo%3A%3ASource&SubmitLink=Procurar" target="_blanck">Alt. na conta</a></button>
-                <button class="button"><a href="https://suportedti.agu.gov.br/otrs/index.pl?ChallengeToken=${challengeToken}&Action=AgentLinkObject&Mode=Normal&SourceObject=Ticket&SourceKey=${ticket}&TargetIdentifier=ITSMConfigItem%3A%3A168&SEARCH%3A%3ANumber=&SEARCH%3A%3AName=SDF0814+&SubmitSearch=Procurar&TypeIdentifier=AlternativeTo%3A%3ASource&SubmitLink=Procurar" target="_blanck">Desativar conta</a></button>
-                <button class="button"><a href="https://suportedti.agu.gov.br/otrs/index.pl?ChallengeToken=${challengeToken}&Action=AgentLinkObject&Mode=Normal&SourceObject=Ticket&SourceKey=${ticket}&TargetIdentifier=ITSMConfigItem%3A%3A168&SEARCH%3A%3ANumber=&SEARCH%3A%3AName=SDFURA0117&SubmitSearch=Procurar&TypeIdentifier=AlternativeTo%3A%3ASource&SubmitLink=Procurar" target="_blanck">Criar conta</a></button>
-                <button class="button"><a href="https://suportedti.agu.gov.br/otrs/index.pl?Action=AgentLinkObject;SourceObject=Ticket;SourceKey=${ticket}" target="_blanck">Inserir manual</a></button>
+                <button class="button"><a class="linkButton" href="https://suportedti.agu.gov.br/otrs/index.pl?ChallengeToken=${challengeToken}&Action=AgentLinkObject&Mode=Normal&SourceObject=Ticket&SourceKey=${ticket}&TargetIdentifier=ITSMConfigItem%3A%3A139&SEARCH%3A%3ANumber=&SEARCH%3A%3AName=biblioteca&SubmitSearch=Procurar&TypeIdentifier=AlternativeTo%3A%3ASource&SubmitLink=Procurar" target="_blanck">Bib. Software</a></button>
+                <button class="button"><a class="linkButton" href="https://suportedti.agu.gov.br/otrs/index.pl?ChallengeToken=${challengeToken}&Action=AgentLinkObject&Mode=Normal&SourceObject=Ticket&SourceKey=${ticket}&TargetIdentifier=ITSMConfigItem%3A%3A168&SEARCH%3A%3ANumber=&SEARCH%3A%3AName=SDFURA0031&SubmitSearch=Procurar&TypeIdentifier=AlternativeTo%3A%3ASource&SubmitLink=Procurar" target="_blanck">Reset de senha</a></button>
+                <button class="button"><a class="linkButton" href="https://suportedti.agu.gov.br/otrs/index.pl?ChallengeToken=${challengeToken}&Action=AgentLinkObject&Mode=Normal&SourceObject=Ticket&SourceKey=${ticket}&TargetIdentifier=ITSMConfigItem%3A%3A168&SEARCH%3A%3ANumber=&SEARCH%3A%3AName=SDF0432&SubmitSearch=Procurar&TypeIdentifier=AlternativeTo%3A%3ASource&SubmitLink=Procurar" target="_blanck">Alt. na conta</a></button>
+                <button class="button"><a class="linkButton" href="https://suportedti.agu.gov.br/otrs/index.pl?ChallengeToken=${challengeToken}&Action=AgentLinkObject&Mode=Normal&SourceObject=Ticket&SourceKey=${ticket}&TargetIdentifier=ITSMConfigItem%3A%3A168&SEARCH%3A%3ANumber=&SEARCH%3A%3AName=SDF0814+&SubmitSearch=Procurar&TypeIdentifier=AlternativeTo%3A%3ASource&SubmitLink=Procurar" target="_blanck">Desativar conta</a></button>
+                <button class="button"><a class="linkButton" href="https://suportedti.agu.gov.br/otrs/index.pl?ChallengeToken=${challengeToken}&Action=AgentLinkObject&Mode=Normal&SourceObject=Ticket&SourceKey=${ticket}&TargetIdentifier=ITSMConfigItem%3A%3A168&SEARCH%3A%3ANumber=&SEARCH%3A%3AName=SDFURA0117&SubmitSearch=Procurar&TypeIdentifier=AlternativeTo%3A%3ASource&SubmitLink=Procurar" target="_blanck">Criar conta</a></button>
+                <button class="button"><a class="linkButton" href="https://suportedti.agu.gov.br/otrs/index.pl?Action=AgentLinkObject;SourceObject=Ticket;SourceKey=${ticket}" target="_blanck">Inserir manual</a></button>
             </div>
         </div>
         `)
