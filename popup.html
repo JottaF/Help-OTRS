@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Help Otrs</title>
+</head>
+<body>
+    <div class="popupContainer">
+        <h2>Help Otrs</h2>
+        <div class="filter">
+            <div class="select">
+                <input type="checkbox" name="selectAll" id="selectAll" onchange="(event) => {console.log(event)}">
+                Selecionar tudo
+            </div>
+            <ul>
+                <li>
+                    <input type="checkbox" name="regiao1" id="1ª Região">
+                    1ª Região
+                </li>
+                <li>
+                    <input type="checkbox" name="regiao2" id="2ª Região">
+                    2ª Região
+                </li>
+                <li>
+                    <input type="checkbox" name="regiao3" id="3ª Região">
+                    3ª Região
+                </li>
+                <li>
+                    <input type="checkbox" name="regiao4" id="4ª Região">
+                    4ª Região
+                </li>
+                <li>
+                    <input type="checkbox" name="regiao5" id="5ª Região">
+                    5ª Região
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="index.js"></script>
+</body>
+</html>

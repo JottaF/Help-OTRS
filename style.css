@@ -1,7 +1,8 @@
 .alert {
     width: 4rem;
     height: 4rem;
-    background-color: #003583;
+    background-color: #e01015;
+    border: 5px solid white;
     text-decoration: none;
     position: fixed;
     right: 2rem;
@@ -21,11 +22,79 @@
     box-shadow: -2px 4px 10px 4px rgba(0,0,0,0.31);
 }
 
+img {
+    height: 3.5rem;
+    margin-top: 0.7rem;
+}
+
+
 .alert:hover {
     width: 14rem;
     justify-content: start;
     transition: all .3s;
-    gap: 1rem
+    gap: 1rem;
+    border-color: white;
+}
+
+.events {
+    background-color: lightslategray;
+    transition: all .5s;
+    overflow: hidden;
+    cursor: default;
+}
+
+.events:hover {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    flex-direction: column;
+    transition: all .5s;
+    border-radius: 1rem;
+    height:auto;
+    width: 16rem;
+    gap: .5rem;
+}
+
+.container {
+    width: 100%;
+}
+
+.agendamentos {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.evento {
+    text-decoration: none;
+    color: white;
+    transition: all .3s;
+}
+
+.evento:hover {
+    background: #0000007a;
+    border-radius: 0.2rem;
+    padding: 0.2rem;
+    transition: all .3s;
+}
+
+.evento p {
+    font-size: 11px;
+}
+
+.horario {
+    display: flex;
+    gap: 1rem;
+    color: gainsboro;
+    font-weight: 700;
+    font-size: 13px;
+}
+
+.footer {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1rem;
 }
 
 .icon {
@@ -38,8 +107,18 @@
     color: white;
 }
 
+.footer .icon img {
+    margin-left: 5.5rem;
+    margin-top: -1.5rem;
+}
+
 .alert:hover .icon {
 	margin-left: 1rem;
+}
+
+.events:hover .footer .icon img {
+    margin-left: -.5rem;
+    margin-bottom: -1rem;
 }
 
 .alert:hover .span {
@@ -83,4 +162,32 @@
     90% { transform: translate(1px, 2px) rotate(0deg); }
     95% { transform: translate(-1px, -1px) rotate(1deg); }
     100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
+
+.popupContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    padding: .7rem;
+    gap: 1rem;
+    width: 9rem;
+    background: lightslategrey;
+    color: white;
+    font-size: 14px;
+    border-radius: 0.2rem;
+}
+
+.select {
+    display: flex;
+    gap: .5rem
+}
+
+li {
+    display: flex;
+    list-style: none;
+    gap: .5rem
+}
+
+body {
+    border: none;
 }
