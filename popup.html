@@ -12,32 +12,33 @@
         <h2>Help Otrs</h2>
         <div class="filter">
             <div class="select">
-                <input type="checkbox" name="selectAll" id="selectAll" onchange="(event) => {console.log(event)}">
+                <input type="checkbox" name="selectAll" id="selectAll">
                 Selecionar tudo
             </div>
             <ul>
                 <li>
-                    <input type="checkbox" name="regiao1" id="1ª Região">
+                    <input type="checkbox" id="regiao1" name="1ª Região">
                     1ª Região
                 </li>
                 <li>
-                    <input type="checkbox" name="regiao2" id="2ª Região">
+                    <input type="checkbox" id="regiao2" name="2ª Região">
                     2ª Região
                 </li>
                 <li>
-                    <input type="checkbox" name="regiao3" id="3ª Região">
+                    <input type="checkbox" id="regiao3" name="3ª Região">
                     3ª Região
                 </li>
                 <li>
-                    <input type="checkbox" name="regiao4" id="4ª Região">
+                    <input type="checkbox" id="regiao4" name="4ª Região">
                     4ª Região
                 </li>
                 <li>
-                    <input type="checkbox" name="regiao5" id="5ª Região">
+                    <input type="checkbox" id="regiao5" name="5ª Região">
                     5ª Região
                 </li>
             </ul>
         </div>
+        <button id="recarregar">Recarregar página</button>
     </div>
 
     <script src="index.js"></script>
