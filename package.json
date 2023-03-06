@@ -1,0 +1,25 @@
+{
+  "name": "help-otrs",
+  "version": "1.0.0",
+  "description": "Para fazer a instalação da extensão:\r     1 - Abra o navegador Google Chrome;\r     2 - Acesse o site:\r         chrome://extensions/\r     3 - Ative o mode de desenvolvedor, no canto superior direito da tela;\r     4 - Clique em \"Carregar sem compactação\";\r     5 - Procure o diretório onde você extraiu o arquivo ZIP, abra a pasta \"Help Otrs\" e clique no botão selecionar pasta;",
+  "main": "./src/index.js",
+  "scripts": {
+    "build": "webpack",
+    "start": "webpack serve --open"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JottaF/Scarab.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JottaF/Scarab/issues"
+  },
+  "homepage": "https://github.com/JottaF/Scarab#readme",
+  "devDependencies": {
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.1",
+    "webpack-dev-server": "^4.11.1"
+  }
+}

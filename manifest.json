@@ -10,11 +10,12 @@
                 "https://suportedti.agu.gov.br/otrs/*"
             ],
             "css": [
-                "style.css"
+                "src/css/style.css"
             ],
             "js": [
-                "index.js"
-            ]
+                "dist/bundle.js"
+            ],
+            "run_at": "document_end"
         }
     ],
     "permissions": [
@@ -24,18 +25,18 @@
     ],
     "action": {
         "default_title": "Help Otrs",
-        "default_popup": "popup.html",
+        "default_popup": "src/html/popup.html",
         "default_icon": {
-            "16": "/images/logo.png",
-            "32": "/images/logo.png",
-            "48": "/images/logo.png",
-            "128": "/images/logo.png"
+            "16": "/src/assets/images/logo.png",
+            "32": "/src/assets/images/logo.png",
+            "48": "/src/assets/images/logo.png",
+            "128": "/src/assets/images/logo.png"
         }
     },
     "icons": {
-        "16": "/images/logo.png",
-        "32": "/images/logo.png",
-        "48": "/images/logo.png",
-        "128": "/images/logo.png"
+        "16": "/src/assets/images/logo.png",
+        "32": "/src/assets/images/logo.png",
+        "48": "/src/assets/images/logo.png",
+        "128": "/src/assets/images/logo.png"
     }
 }
