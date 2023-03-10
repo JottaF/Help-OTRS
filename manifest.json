@@ -2,7 +2,7 @@
     "manifest_version": 3,
     "name": "Help Otrs",
     "description": "Ferramenta de alerta para o Otrs.",
-    "version": "1.2.2",
+    "version": "1.9.9",
     "author": "João Felipe Lima",
     "content_scripts": [
         {
@@ -10,7 +10,7 @@
                 "https://suportedti.agu.gov.br/otrs/*"
             ],
             "css": [
-                "src/css/style.css"
+                "dist/css/style.css"
             ],
             "js": [
                 "dist/bundle.js"
@@ -25,18 +25,17 @@
     ],
     "action": {
         "default_title": "Help Otrs",
-        "default_popup": "src/html/popup.html",
         "default_icon": {
-            "16": "/src/assets/images/logo.png",
-            "32": "/src/assets/images/logo.png",
-            "48": "/src/assets/images/logo.png",
-            "128": "/src/assets/images/logo.png"
+            "16": "/dist/assets/images/logo.png",
+            "32": "/dist/assets/images/logo.png",
+            "48": "/dist/assets/images/logo.png",
+            "128": "/dist/assets/images/logo.png"
         }
     },
     "icons": {
-        "16": "/src/assets/images/logo.png",
-        "32": "/src/assets/images/logo.png",
-        "48": "/src/assets/images/logo.png",
-        "128": "/src/assets/images/logo.png"
+        "16": "/dist/assets/images/logo.png",
+        "32": "/dist/assets/images/logo.png",
+        "48": "/dist/assets/images/logo.png",
+        "128": "/dist/assets/images/logo.png"
     }
 }

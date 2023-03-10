@@ -1,6 +1,7 @@
 import { addICAlert, homePageVerifier, icVerifier, pageVerifier } from './js/alert'
 import { addCalendarAlert, getEvents } from './js/calendar'
 import { AddTeamsLink } from './js/chatWithUser'
+import { tableObserver, injectContextMenu } from './js/verifyRDM'
 
 
 function init() {
@@ -11,19 +12,20 @@ function init() {
 
     if (isCorrectPage) {
         setTimeout(() => {
-            console.log('link');
             AddTeamsLink()
         }, 1000)
 
         if (!isIcAdded)
             addICAlert()
     }
-    console.log('reste');
 
-    const events = getEvents()
-    console.log(events);
-    if (homePageVerifier && events.length > 0) {
-        addCalendarAlert(events)
+    if (homePageVerifier) {
+        injectContextMenu()
+        tableObserver()
+
+        const events = getEvents()
+        if (events.length > 0)
+            addCalendarAlert(events)
     }
 }
 

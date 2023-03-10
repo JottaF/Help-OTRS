@@ -58,6 +58,6 @@ export function homePageVerifier() {
     try {
         return document.URL == 'https://suportedti.agu.gov.br/otrs/index.pl?Action=AgentDashboard'
     } catch (error) {
-
+        return false
     }
 }

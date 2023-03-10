@@ -17,7 +17,6 @@ export function getEvents() {
         const details = eventDetails[i].getElementsByClassName('Value')
 
         if (today.toLocaleDateString() == details[9].textContent.split(' ')[0]) {
-            console.log(details);
             const estado = details[5].textContent
             const titulo = details[6].textContent
             const inicio = details[8].textContent.split(' ')[1]
@@ -42,7 +41,7 @@ export function getEvents() {
 
         }
     }
-    return events
+    return events.sort((a, b) => a.inicio.localeCompare(b.inicio))
 }
 
 export function addCalendarAlert(events) {
