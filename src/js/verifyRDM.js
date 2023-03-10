@@ -34,40 +34,51 @@ function trEventlistener(table) {
         const contextMenu = document.getElementById('context-menu')
 
         Array.from(table.getElementsByTagName('tr')).forEach((element) => {
+            function showRDMInfoAndCloseContextMenu() {
+                console.log('chamou ', element);
+                showRDMInfo(element)
+                element.setAttribute('rdm-info', true)
+                contextMenu.style.display = 'none'
+            }
+
             element.addEventListener('contextmenu', e => {
                 e.preventDefault()
 
-                document.querySelector('#load-rdm').addEventListener('click', () => {
-                    showRDMInfo(element)
-                })
+                document.querySelector('#load-rdm').onclick = showRDMInfoAndCloseContextMenu
 
                 contextMenu.style.left = `${e.clientX}px`
                 contextMenu.style.top = `${e.clientY + window.scrollY}px`
                 contextMenu.style.display = 'block'
 
-                element.removeEventListener('contextmenu', ()=>{})
+                document.addEventListener('click', hideContextMenu)
             })
 
-            document.addEventListener('click', () => {
+            function hideContextMenu() {
                 contextMenu.style.display = 'none'
-
-                document.querySelector('#load-rdm').addEventListener('click', () => { })
-            })
+                document.removeEventListener('click', hideContextMenu)
+            }
         })
     } catch {}
 }
 
+
 async function showRDMInfo(element) {
     try {
         if (!element.getAttribute('rdm-info')) {
+            const span = document.createElement('span')
+            span.className = 'loader'
+            
+            const div = Array.from(element.getElementsByTagName('div')).find((e) => e.textContent === 'Pendente da Mudança')
+            console.log(element, div);
+            div.insertAdjacentElement('beforeend', span)
+
             const info = await getRDMInfo(element.getElementsByTagName('a')[0].href)
+
+            // div.removeChild(span)
+            span.className = 'info'
+            span.textContent = `: ${info}`
     
-            Array.from(element.getElementsByTagName('div')).forEach(div => {
-                if (div.textContent == 'Pendente da Mudança') {
-                    div.textContent += `: ${info}`
-                    element.setAttribute('rdm-info', true)
-                }
-            })
+            // div.textContent += `: ${info}`
         }
     } catch {}
 }
