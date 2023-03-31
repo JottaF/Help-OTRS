@@ -1,17 +1,12 @@
-function convertDate(date) {
-    let oldDate = date[0]
-    let time = date[1]
-
-    let newDate = oldDate.split('/').reverse().join('-')
-
-    return new Date(`${newDate} ${time} GMT-0300`)
+function convertDate(hour) {
+    const splitHour = hour.split(':')
+    return new Date().setHours(splitHour[0],splitHour[1])
 }
 
 export function getEvents() {
     const today = new Date()
     const eventDetails = document.getElementsByClassName('EventDetails')
     const events = []
-    let filter = false
 
     for (let i = 0; i < eventDetails.length; i++) {
         const details = eventDetails[i].getElementsByClassName('Value')
@@ -23,21 +18,20 @@ export function getEvents() {
             const termino = details[9].textContent.split(' ')[1]
             const link = eventDetails[i].getAttribute('id').split('-')[2]
 
-            let minsToStart = (convertDate(inicio) - today) / 1000 / 60
+            let minsToStart = (convertDate(inicio) - today.getTime()) / 1000 / 60
+            console.log(titulo, inicio, minsToStart, convertDate(inicio), today);
 
-            if (estado == 'Aguardando Validação' || estado == 'Em Atendimento')
-                break
-            if (minsToStart > 15)
-                break
-            if (filter)
-                filter.forEach(element => {
-                    if (titulo.includes(element)) {
-                        events.push({ estado, titulo, inicio, termino, link })
-                    }
-                })
-            else {
-                events.push({ estado, titulo, inicio, termino, link })
+            if (estado == 'Aguardando Validação' || estado == 'Em Atendimento') {
+                console.log('if 1');
+                continue
             }
+            if (minsToStart >= 15) {
+                console.log('if 2');
+                continue
+            }
+
+            events.push({ estado, titulo, inicio, termino, link })
+            
 
         }
     }

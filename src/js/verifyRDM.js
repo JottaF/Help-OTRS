@@ -35,7 +35,6 @@ function trEventlistener(table) {
 
         Array.from(table.getElementsByTagName('tr')).forEach((element) => {
             function showRDMInfoAndCloseContextMenu() {
-                console.log('chamou ', element);
                 showRDMInfo(element)
                 element.setAttribute('rdm-info', true)
                 contextMenu.style.display = 'none'
@@ -69,16 +68,12 @@ async function showRDMInfo(element) {
             span.className = 'loader'
             
             const div = Array.from(element.getElementsByTagName('div')).find((e) => e.textContent === 'Pendente da Mudança')
-            console.log(element, div);
             div.insertAdjacentElement('beforeend', span)
 
             const info = await getRDMInfo(element.getElementsByTagName('a')[0].href)
 
-            // div.removeChild(span)
             span.className = 'info'
             span.textContent = `: ${info}`
-    
-            // div.textContent += `: ${info}`
         }
     } catch {}
 }

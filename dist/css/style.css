@@ -283,7 +283,7 @@ body {
     display: inline-block;
     position: relative;
     border: 2px solid;
-    border-color: #0006aa26 #005ccd40 #00247359 #3369ff80;
+    border-color: #0006aa26 #197dff7c #00247359 #3369ff9c;
     box-sizing: border-box;
     animation: rotation 1s linear infinite;
   }
