@@ -1,8 +1,6 @@
 import { addICAlert, homePageVerifier, icVerifier, pageVerifier } from './js/alert'
 import { addCalendarAlert, getEvents } from './js/calendar'
 import { AddTeamsLink } from './js/chatWithUser'
-import { tableObserver, injectContextMenu } from './js/verifyRDM'
-
 
 function init() {
     const content = document.querySelectorAll(".WidgetSimple .Header")
@@ -20,9 +18,6 @@ function init() {
     }
 
     if (homePageVerifier) {
-        injectContextMenu()
-        tableObserver()
-
         const events = getEvents()
         if (events.length > 0)
             addCalendarAlert(events)
