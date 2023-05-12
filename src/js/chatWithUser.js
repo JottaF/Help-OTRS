@@ -1,4 +1,8 @@
-function getInfo() {
+function getInfo(count = 1) {
+    if (count == 10) {
+        return null
+    }
+
     let regex = /([0-9]+)/i
     const h1Chamado = document.querySelector('.Headline').querySelector('h1').textContent
     const numChamado = regex.exec(h1Chamado)[0]
@@ -7,17 +11,33 @@ function getInfo() {
     const divTecName = document.querySelector('.UserAvatar').querySelector('div').textContent
     const tecName = regex.exec(divTecName)[0]
 
-    const userName = document.querySelectorAll('.FixedValueSmall')[4].title
-    const userEmail = document.querySelectorAll('.FixedValueSmall')[6].title
+        let userName = ''
+        let userEmail = ''
 
-    regex = /—\s(.*)/i
-    const subject = regex.exec(h1Chamado)[1]
+        const labels = document.querySelectorAll('label')
 
-    return { numChamado, tecName, userName, userEmail, subject }
+        for (let i = 0; i < labels.length; i++) {
+            if (labels[i].textContent == 'Nome Completo:') {
+                userName = labels[i].nextElementSibling.title
+            }
+            if (labels[i].textContent == 'E-mail:') {
+                userEmail = labels[i].nextElementSibling.title
+            }
+        }
+
+        if (userName == '' || userEmail == '') {
+            setTimeout(function(){}, 1500)
+            return getInfo(count++)
+        }
+
+        regex = /—\s(.*)/i
+        const subject = regex.exec(h1Chamado)[1]
+
+        return { numChamado, tecName, userName, userEmail, subject }
 }
 
 export function AddTeamsLink() {
-    const info = getInfo()
+    const {userEmail, userName, tecName, numChamado, subject} = getInfo()
 
     const label = document.createElement('label')
     label.textContent = 'Teams:'
@@ -39,7 +59,7 @@ export function AddTeamsLink() {
         greeting = 'Boa noite'
     }
 
-    a.href = `https://teams.microsoft.com/l/chat/0/0?users=${info.userEmail}&message=${greeting} Sr(a) ${info.userName}! Meu nome é ${info.tecName}, Técnico de Suporte da Empresa Hepta. O motivo do meu contato é referente ao Chamado ${info.numChamado}, com assunto: ${info.subject}.`
+    a.href = `https://teams.microsoft.com/l/chat/0/0?users=${userEmail}&message=${greeting} Sr(a) ${userName}! Meu nome é ${tecName}, Técnico de Suporte da Empresa Hepta. O motivo do meu contato é referente ao Chamado ${numChamado}, com assunto: ${subject}.`
     a.textContent = 'Conversar no Teams'
     a.target = '_blank'
 

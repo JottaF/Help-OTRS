@@ -19,14 +19,11 @@ export function getEvents() {
             const link = eventDetails[i].getAttribute('id').split('-')[2]
 
             let minsToStart = (convertDate(inicio) - today.getTime()) / 1000 / 60
-            console.log(titulo, inicio, minsToStart, convertDate(inicio), today);
 
             if (estado == 'Aguardando Validação' || estado == 'Em Atendimento') {
-                console.log('if 1');
                 continue
             }
             if (minsToStart >= 15) {
-                console.log('if 2');
                 continue
             }
 

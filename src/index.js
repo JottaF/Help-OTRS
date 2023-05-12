@@ -1,31 +1,47 @@
 import { addICAlert, homePageVerifier, icVerifier, pageVerifier } from './js/alert'
 import { addCalendarAlert, getEvents } from './js/calendar'
 import { AddTeamsLink } from './js/chatWithUser'
-import { tableObserver, injectContextMenu } from './js/verifyRDM'
+import { icPageVerifier, addIc } from './js/addIc'
+import { addNote, injectContextMenu, tableObserver } from './js/addNote'
 
 
 function init() {
     const content = document.querySelectorAll(".WidgetSimple .Header")
 
     const isIcAdded = icVerifier(content)
-    const isCorrectPage = pageVerifier()
-
-    if (isCorrectPage) {
+    const isCallingPage = pageVerifier()
+    const isIcPage = icPageVerifier()
+    const isHomePage = homePageVerifier()
+    
+    if (isCallingPage) {
         setTimeout(() => {
             AddTeamsLink()
         }, 1000)
-
+        
         if (!isIcAdded)
-            addICAlert()
+        addICAlert()
     }
-
-    if (homePageVerifier) {
+    
+    if (isHomePage) {
         injectContextMenu()
         tableObserver()
-
+        
         const events = getEvents()
         if (events.length > 0)
-            addCalendarAlert(events)
+        addCalendarAlert(events)
+    }
+    
+    if (isIcPage) {
+        try {
+            addIc()
+        } catch (e) {
+            console.log('Erro ao adicionar IC: ',e);
+        }
+    }
+
+    const isNotePage = document.URL.includes('AddNoteAuto')
+    if (isNotePage) {
+        addNote()
     }
 }
 

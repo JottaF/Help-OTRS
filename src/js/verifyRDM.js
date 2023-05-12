@@ -1,20 +1,3 @@
-async function getRDMLinks(url) {
-    const response = await fetch(url)
-    const html = await response.text()
-    const parser = new DOMParser()
-    const document = parser.parseFromString(html, 'text/html')
-
-    const elements = document.querySelectorAll('.AsBlock.LinkObjectLink')
-    const links = Array.from(elements).map(element => {
-        if (element.title.includes('Chamado')) { 
-            return element.href 
-        }
-        return null
-    }).filter(title => title != null)
-
-    return links
-}
-
 async function getRDMInfo(url) {
     try {
         const response = await fetch(url)
@@ -78,33 +61,26 @@ async function showRDMInfo(element) {
     } catch {}
 }
 
-export function tableObserver() {
+export function addVerifyAllLink(table) {
     try {
+        const ul = document.querySelectorAll('.Tab.Actions')[1]
         const table = document.querySelector('#Dashboard9906-Chamados-Pendentes-box')
-        trEventlistener(table)
 
-        // Cria uma nova instância do MutationObserver
-        const observer = new MutationObserver(() => {
-            trEventlistener(table)
-        })
+        if (ul.children.length == 4) {
+            const p = document.createElement('p')
+            p.textContent = "Carregar todas as RDM's"
+            p.style = "color: gray;cursor: pointer;"
 
-        // Define as opções do MutationObserver
-        const config = { attributes: true, childList: true, subtree: true }
+            const li = document.createElement('li')
+            li.appendChild(p)
 
-        // Inicia a observação do elemento HTML com as opções definidas
-        observer.observe(table, config)
+            ul.appendChild(li)
+
+            p.addEventListener('click', () => {
+                Array.from(table.getElementsByTagName('tr')).forEach((element) => {
+                    showRDMInfo(element)
+                })
+            })
+        }
     } catch {}
-}
-
-export function injectContextMenu() {
-    const html = `
-    <div id="context-menu">
-    <ul>
-        <li id="load-rdm">Carregar estado da RDM</li>
-    </ul>
-    </div>
-    `
-
-    const body = document.getElementsByTagName('body')[0]
-    body.insertAdjacentHTML('beforeend', html)
 }
