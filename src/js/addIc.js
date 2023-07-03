@@ -12,7 +12,7 @@ export function addIc() {
             document.getElementById('LinkTargetKeys').click()
             document.getElementById('AddLinks').click()
 
-            const body = document.getElementsByTagName('body')[0]
+            const body = document.querySelector('body')
             body.insertAdjacentHTML('afterbegin', 
             `
             <div class="loading">

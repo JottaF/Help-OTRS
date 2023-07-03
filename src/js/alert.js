@@ -81,10 +81,7 @@ export function icVerifier(content) {
 
 export function homePageVerifier() {
   try {
-    return (
-      document.URL ==
-      "https://suportedti.agu.gov.br/otrs/index.pl?Action=AgentDashboard"
-    );
+    return document.querySelector('#nav-Dashboard').classList.contains('Selected')
   } catch (error) {
     return false;
   }

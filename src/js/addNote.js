@@ -7,19 +7,17 @@ export function addNote() {
                 if (element.value == 14) {
                     console.log(element.textContent);
                     element.selected = true
+
+                    document.querySelector('#Subject').setAttribute('value', 'Em atendimento')
+                    document.querySelector('#Subject').textContent = 'Em atendimento'
+            
+                    const iframe = document.querySelector('#cke_RichText').querySelector('iframe')
+                    const doc = iframe.contentDocument.querySelector('.cke_editable.cke_editable_themed.cke_contents_ltr.cke_show_borders')
+                    doc.textContent = 'Em atendimento'
+            
+                    document.querySelector('#submitRichText').click()
                 }
-            })
-    
-            document.querySelector('#Subject').setAttribute('value', 'Em atendimento')
-            document.querySelector('#Subject').textContent = 'Em atendimento'
-    
-            const iframe = document.querySelector('#cke_RichText').querySelector('iframe')
-            const doc = iframe.contentDocument.querySelector('.cke_editable.cke_editable_themed.cke_contents_ltr.cke_show_borders')
-            doc.textContent = 'Em atendimento'
-    
-            document.querySelector('#submitRichText').click()
-                
-            addNote();
+            })  
         }, 1500);
     });
 }
@@ -30,16 +28,17 @@ function trEventlistener(table) {
 
         Array.from(table.getElementsByTagName('tr')).forEach((element) => {
             function showRDMInfoAndCloseContextMenu() {
-                //TODO: fazer o link abrir em outra aba, verificar pq o carregar todas as rdms não está rodando mais de uma vez
-                const url = element.querySelector('.AsBlock.MasterActionLink').href.replace('Zoom', 'Note')  + ';AddNoteAuto'
-                document.querySelector('#link-chamado').setAttribute('href', url)
                 contextMenu.style.display = 'none'
+                document.querySelector('#link-chamado').removeAttribute('href')
             }
-
+            
             element.addEventListener('contextmenu', e => {
                 e.preventDefault()
-
+                
                 document.querySelector('#load-page').onclick = showRDMInfoAndCloseContextMenu
+
+                const url = element.querySelector('.AsBlock.MasterActionLink').href.replace('Zoom', 'Note')  + ';AddNoteAuto'
+                document.querySelector('#link-chamado').setAttribute('href', url)
 
                 contextMenu.style.left = `${e.clientX}px`
                 contextMenu.style.top = `${e.clientY + window.scrollY}px`
