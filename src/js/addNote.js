@@ -5,7 +5,6 @@ export function addNote() {
         setTimeout(() => {
             document.querySelector('#NewStateID').querySelectorAll('option').forEach(element => {
                 if (element.value == 14) {
-                    console.log(element.textContent);
                     element.selected = true
 
                     document.querySelector('#Subject').setAttribute('value', 'Em atendimento')

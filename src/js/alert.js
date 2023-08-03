@@ -88,11 +88,9 @@ export function homePageVerifier() {
 }
 
 export function getPanelInfo() {
-  console.log(isPanelAdded);
   return isPanelAdded;
 }
 
 export function setPanelInfo(state) {
-  console.log(isPanelAdded);
   isPanelAdded = state;
 }

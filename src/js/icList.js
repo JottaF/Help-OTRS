@@ -92,8 +92,6 @@ function injectPanel() {
         isPanelAdded = true
         var challengeToken = getChallengeToken().toString()
         var ticket = getTicket()
-        console.log(challengeToken);
-        console.log(ticket);
 
         document.getElementsByClassName('alert')[0].classList.add('icPanelAdded')
         document.getElementsByClassName('span')[0].classList.add('turnSpanVisible')
