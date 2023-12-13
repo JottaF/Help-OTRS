@@ -159,17 +159,17 @@ img {
     color: white;
     padding: .4rem;
 
-    -webkit-box-shadow: -2px 4px 10px 4px rgba(0,0,0,0.31); 
-    box-shadow: -2px 4px 10px 4px rgba(0,0,0,0.31);
+    -webkit-box-shadow: -2px 4px 10px 4px rgba(0, 0, 0, 0.31);
+    box-shadow: -2px 4px 10px 4px rgba(0, 0, 0, 0.31);
 }
 
 .icPanel .header .title {
-    color:white;
+    color: white;
     font-size: 20px;
     font-family: sans-serif;
     font-weight: 600;
     white-space: nowrap;
-    margin:0.3rem;
+    margin: 0.3rem;
 }
 
 .icPanel .options {
@@ -352,6 +352,27 @@ body {
     color: cyan;
 }
 
+#close-menu-button {
+    height: 1rem;
+    width: 1rem;
+    border: 2px solid #03b8c9;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: -0.5rem;
+    left: -0.7rem;
+    background: black;
+    cursor: pointer;
+}
+
+#close-menu-button:hover {
+    color: #f86464;
+    background: #300411;
+    transition: all .3s ease-in;
+}
+
 .loader {
     width: 12px;
     height: 12px;
@@ -363,16 +384,17 @@ body {
     border-color: #0006aa26 #ff88197c #00247359 #ff9900d0;
     box-sizing: border-box;
     animation: rotation 1s linear infinite;
-  }
-  
-  @keyframes rotation {
+}
+
+@keyframes rotation {
     0% {
-      transform: rotate(0deg);
+        transform: rotate(0deg);
     }
+
     100% {
-      transform: rotate(360deg);
+        transform: rotate(360deg);
     }
-  } 
+}
 
 .info {
     color: blue;
@@ -381,7 +403,7 @@ body {
 
 .loading {
     position: fixed;
-    
+
     height: 100vh;
     width: 100vw;
     z-index: 999;
@@ -403,10 +425,11 @@ body {
     border-color: #FFF #FFF transparent transparent;
     box-sizing: border-box;
     animation: rotation 1s linear infinite;
-  }
-  .icloader::after,
-  .icloader::before {
-    content: '';  
+}
+
+.icloader::after,
+.icloader::before {
+    content: '';
     box-sizing: border-box;
     position: absolute;
     left: 0;
@@ -422,28 +445,31 @@ body {
     box-sizing: border-box;
     animation: icrotationBack 0.5s linear infinite;
     transform-origin: center center;
-  }
-  .icloader::before {
+}
+
+.icloader::before {
     width: 32px;
     height: 32px;
     border-color: #FFF #FFF transparent transparent;
     animation: icrotation 1.5s linear infinite;
-  }
-      
-  @keyframes icrotation {
+}
+
+@keyframes icrotation {
     0% {
-      transform: rotate(0deg);
+        transform: rotate(0deg);
     }
+
     100% {
-      transform: rotate(360deg);
+        transform: rotate(360deg);
     }
-  } 
-  @keyframes icrotationBack {
+}
+
+@keyframes icrotationBack {
     0% {
-      transform: rotate(0deg);
+        transform: rotate(0deg);
     }
+
     100% {
-      transform: rotate(-360deg);
+        transform: rotate(-360deg);
     }
-  }
-      
+}
