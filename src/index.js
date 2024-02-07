@@ -1,4 +1,4 @@
-import { addICAlert, homePageVerifier, icVerifier, pageVerifier } from './js/alert'
+import { addICAlert, homePageVerifier, icVerifier, pageVerifier, addNoteLink } from './js/alert'
 import { addCalendarAlert, getEvents } from './js/calendar'
 import { AddTeamsLink } from './js/chatWithUser'
 import { icPageVerifier, addIc } from './js/addIc'
@@ -18,6 +18,8 @@ function init() {
             AddTeamsLink()
         }, 1000)
         
+        addNoteLink()
+
         if (!isIcAdded)
         addICAlert()
     }

@@ -94,3 +94,23 @@ export function getPanelInfo() {
 export function setPanelInfo(state) {
   isPanelAdded = state;
 }
+
+export function addNoteLink() {
+  window.onload = () => {
+    try {
+      let link = document.querySelector('#nav-Note').querySelector('a').href
+      console.log(link);
+      if (link) {
+        let li = document.createElement('li')
+        let a = document.createElement('a')
+  
+        a.href = link.replace('Zoom', 'Note') + ';AddNoteAuto'
+        a.textContent = 'Em atendimento'
+        li.append(a)
+        document.querySelector('.Actions').append(li)
+      }
+    } catch (error) {
+      console.log('Não foi possível criar o link "Em atendimento".', error)
+    }
+  }
+}
