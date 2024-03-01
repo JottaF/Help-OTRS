@@ -3,6 +3,7 @@ import { addCalendarAlert, getEvents } from './js/calendar'
 import { AddTeamsLink } from './js/chatWithUser'
 import { icPageVerifier, addIc } from './js/addIc'
 import { addNote, injectContextMenu, tableObserver } from './js/addNote'
+import { Search } from './js/search'
 
 
 function init() {
@@ -12,32 +13,35 @@ function init() {
     const isCallingPage = pageVerifier()
     const isIcPage = icPageVerifier()
     const isHomePage = homePageVerifier()
-    
+
+    // Adiciona a barra de pesquisa de chamado
+    Search()
+
     if (isCallingPage) {
         setTimeout(() => {
             AddTeamsLink()
         }, 1000)
-        
+
         addNoteLink()
 
         if (!isIcAdded)
-        addICAlert()
+            addICAlert()
     }
-    
+
     if (isHomePage) {
         injectContextMenu()
         tableObserver()
-        
+
         const events = getEvents()
         if (events.length > 0)
-        addCalendarAlert(events)
+            addCalendarAlert(events)
     }
-    
+
     if (isIcPage) {
         try {
             addIc()
         } catch (e) {
-            console.log('Erro ao adicionar IC: ',e);
+            console.log('Erro ao adicionar IC: ', e);
         }
     }
 
