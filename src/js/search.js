@@ -1,7 +1,9 @@
 export function Search() {
+  console.log('iniciando search');
   let a = document.createElement('a')
   a.innerHTML = 'Abrir chamado'
   a.style = 'margin-left: .5rem; display: none; background-color: gray; padding: 0.4rem; border-radius: 2px; color: white; cursor: pointer; transition: all; height: auto; width: auto; text-indent: 0;'
+  console.log('botão criado');
 
   let input = document.createElement('input')
   input.type = 'text'
@@ -26,7 +28,12 @@ export function Search() {
       }
     }
   }
+  console.log('input criado');
 
-  document.querySelector('#CISearch').appendChild(input)
-  document.querySelector('#CISearch').appendChild(a)
+  const form = document.querySelector('#CISearch')
+  console.log('form', form);
+  form.appendChild(input)
+  console.log('input adicionado');
+  form.appendChild(a)
+  console.log('botão adicionado');
 }

@@ -19,6 +19,7 @@
         }
     ],
     "permissions": [
+        "allow-scripts",
         "activeTab",
         "scripting",
         "storage"
