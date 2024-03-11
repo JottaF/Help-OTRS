@@ -74,11 +74,8 @@ function loadData() {
         checkedOptions.push(...JSON.parse(local))
     }
 
-    console.log('load data');
     regioes.forEach(e => {
-        console.log(e.name);
         if (checkedOptions.includes(e.name)) {
-            console.log('tem ' + e.name);
             changenStatus(e, true)
         }
     })

@@ -59,7 +59,7 @@ export function AddTeamsLink() {
         greeting = 'Boa noite'
     }
 
-    let link = `https://teams.microsoft.com/l/chat/0/0?users=${userEmail}&topicName=Atendimento de chamado&message=${greeting} Sr(a) ${userName}! Meu nome é ${tecName}, Técnico de Suporte da Empresa Hepta. O motivo do meu contato é referente ao Chamado ${numChamado}, com assunto: ${subject}.`
+    let link = `https://teams.microsoft.com/l/chat/0/0?users=${userEmail}&message=${greeting} Sr(a) ${userName}! Meu nome é ${tecName}, Técnico de Suporte da Empresa Hepta. O motivo do meu contato é referente ao Chamado ${numChamado}, com assunto: ${subject}.`
     link.replaceAll(' ', '%20')
     a.href = link
     a.textContent = 'Conversar no Teams'

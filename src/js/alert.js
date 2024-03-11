@@ -99,7 +99,6 @@ export function addNoteLink() {
   window.onload = () => {
     try {
       let link = document.querySelector('#nav-Note').querySelector('a').href
-      console.log(link);
       if (link) {
         let li = document.createElement('li')
         let a = document.createElement('a')

@@ -8,7 +8,6 @@ function injectCode(src) {
     // This is why it works!
     script.src = src;
     script.onload = function () {
-        console.log("script injected");
         this.remove();
     };
 
