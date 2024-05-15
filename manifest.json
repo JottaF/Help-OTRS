@@ -2,7 +2,7 @@
     "manifest_version": 3,
     "name": "Help Otrs",
     "description": "Ferramenta de alerta para o Otrs.",
-    "version": "1.9.9",
+    "version": "2.3.0",
     "author": "João Felipe Lima",
     "content_scripts": [
         {
@@ -19,7 +19,6 @@
         }
     ],
     "permissions": [
-        "allow-scripts",
         "activeTab",
         "scripting",
         "storage"
