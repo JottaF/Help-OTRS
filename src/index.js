@@ -1,56 +1,66 @@
-import { addICAlert, homePageVerifier, icVerifier, pageVerifier, addNoteLink } from './js/alert'
-import { addCalendarAlert, getEvents } from './js/calendar'
-import { AddTeamsLink } from './js/chatWithUser'
-import { icPageVerifier, addIc } from './js/addIc'
-import { addNote, injectContextMenu, tableObserver } from './js/addNote'
-import { Search } from './js/search'
-
+import {
+  addICAlert,
+  homePageVerifier,
+  icVerifier,
+  pageVerifier,
+  addNoteLink,
+} from "./js/alert";
+import { addCalendarAlert, getEvents } from "./js/calendar";
+import { AddTeamsLink } from "./js/chatWithUser";
+import { icPageVerifier, addIc } from "./js/addIc";
+import { addNote, injectContextMenu, tableObserver } from "./js/addNote";
+import { Search } from "./js/search";
+import {
+  createRemoveInServiceLink,
+  removeInServiceObserver,
+} from "./js/removeInService";
 
 function init() {
-    const content = document.querySelectorAll(".WidgetSimple .Header")
+  const content = document.querySelectorAll(".WidgetSimple .Header");
 
-    const isIcAdded = icVerifier(content)
-    const isCallingPage = pageVerifier()
-    const isIcPage = icPageVerifier()
-    const isHomePage = homePageVerifier()
+  const isIcAdded = icVerifier(content);
+  const isCallingPage = pageVerifier();
+  const isIcPage = icPageVerifier();
+  const isHomePage = homePageVerifier();
 
-    // Adiciona a barra de pesquisa de chamado
-    Search()
+  // Adiciona a barra de pesquisa de chamado
+  Search();
 
-    if (isCallingPage) {
-        setTimeout(() => {
-            AddTeamsLink()
-        }, 1000)
+  if (isCallingPage) {
+    setTimeout(() => {
+      AddTeamsLink();
+    }, 1000);
 
-        addNoteLink()
+    addNoteLink();
 
-        if (!isIcAdded)
-            addICAlert()
+    if (!isIcAdded) addICAlert();
+  }
+
+  if (isHomePage) {
+    injectContextMenu();
+    tableObserver();
+
+    const events = getEvents();
+    if (events.length > 0) addCalendarAlert(events);
+
+    createRemoveInServiceLink();
+    removeInServiceObserver();
+  }
+
+  if (isIcPage) {
+    try {
+      addIc();
+    } catch (e) {
+      console.log("Erro ao adicionar IC: ", e);
     }
+  }
 
-    if (isHomePage) {
-        injectContextMenu()
-        tableObserver()
-
-        const events = getEvents()
-        if (events.length > 0)
-            addCalendarAlert(events)
-    }
-
-    if (isIcPage) {
-        try {
-            addIc()
-        } catch (e) {
-            console.log('Erro ao adicionar IC: ', e);
-        }
-    }
-
-    const isNotePage = document.URL.includes('AddNoteAuto')
-    if (isNotePage) {
-        addNote()
-    }
+  const isNotePage = document.URL.includes("AddNoteAuto");
+  if (isNotePage) {
+    addNote();
+  }
 }
 
-
-if (document.readyState == "loading") document.addEventListener('DOMContentLoaded', init)
-else init()
+if (document.readyState == "loading")
+  document.addEventListener("DOMContentLoaded", init);
+else init();
