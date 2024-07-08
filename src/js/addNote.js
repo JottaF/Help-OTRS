@@ -1,99 +1,134 @@
 import { addVerifyAllLink } from "./verifyRDM";
 
 export function addNote() {
-    window.addEventListener('load', () => {
-        setTimeout(() => {
-            document.querySelector('#NewStateID').querySelectorAll('option').forEach(element => {
-                if (element.value == 14) {
-                    element.selected = true
+  window.addEventListener("load", () => {
+    setTimeout(() => {
+      document
+        .querySelector("#NewStateID")
+        .querySelectorAll("option")
+        .forEach((element) => {
+          if (element.value == 14) {
+            element.selected = true;
 
-                    document.querySelector('#Subject').setAttribute('value', 'Em atendimento')
-                    document.querySelector('#Subject').textContent = 'Em atendimento'
+            const type = document.URL.split("TypeOfService=")[1];
 
-                    const iframe = document.querySelector('#cke_RichText').querySelector('iframe')
-                    const doc = iframe.contentDocument.querySelector('.cke_editable.cke_editable_themed.cke_contents_ltr.cke_show_borders')
-                    doc.textContent = 'Em atendimento'
-
-                    document.querySelector('#submitRichText').click()
+            document
+              .querySelector("#DynamicField_PRITipoAtendimento")
+              .querySelectorAll("option")
+              .forEach((op) => {
+                if (op.value == type) {
+                  op.selected = "selected";
                 }
-            })
-        }, 1500);
-    });
+              });
+
+            document
+              .querySelector("#Subject")
+              .setAttribute("value", "Em atendimento");
+            document.querySelector("#Subject").textContent = "Em atendimento";
+
+            const iframe = document
+              .querySelector("#cke_RichText")
+              .querySelector("iframe");
+            const doc = iframe.contentDocument.querySelector(
+              ".cke_editable.cke_editable_themed.cke_contents_ltr.cke_show_borders"
+            );
+            doc.textContent = "Em atendimento";
+
+            document.querySelector("#submitRichText").click();
+          }
+        });
+    }, 1500);
+  });
 }
 
 function trEventlistener(table) {
-    try {
-        const contextMenu = document.getElementById('context-menu')
-        const closeButton = document.getElementById('close-menu-button')
+  try {
+    const contextMenu = document.getElementById("context-menu");
+    const closeButton = document.getElementById("close-menu-button");
 
-        Array.from(table.getElementsByTagName('tr')).forEach((element) => {
-            element.addEventListener('contextmenu', e => {
-                e.preventDefault()
+    Array.from(table.getElementsByTagName("tr")).forEach((element) => {
+      element.addEventListener("contextmenu", (e) => {
+        e.preventDefault();
 
-                const url = element.querySelector('.AsBlock.MasterActionLink').href.replace('Zoom', 'Note') + ';AddNoteAuto'
-                document.querySelector('#link-chamado').setAttribute('href', url)
+        const url =
+          element
+            .querySelector(".AsBlock.MasterActionLink")
+            .href.replace("Zoom", "Note") + ";AddNoteAuto";
 
-                contextMenu.style.left = `${e.clientX}px`
-                contextMenu.style.top = `${e.clientY + window.scrollY}px`
-                contextMenu.style.display = 'block'
+        const urlPresencial = url + ";TypeOfService=P";
+        const urlRemoto = url + ";TypeOfService=R";
 
+        document
+          .querySelector("#link-chamado-presencial")
+          .setAttribute("href", urlPresencial);
+        document
+          .querySelector("#link-chamado-presencial")
+          .setAttribute("href", urlRemoto);
 
-                closeButton.addEventListener('click', hideContextMenu)
-                document.addEventListener('click', hideContextMenu)
+        contextMenu.style.left = `${e.clientX}px`;
+        contextMenu.style.top = `${e.clientY + window.scrollY}px`;
+        contextMenu.style.display = "block";
 
-                //Fecha o context-menu quando aperta esc
-                document.addEventListener('keydown', event => {
-                    if (event.key === 'Escape') {
-                        hideContextMenu()
-                    }
-                })
-            })
-            function hideContextMenu() {
-                contextMenu.style.display = 'none'
-                document.removeEventListener('click', hideContextMenu)
-            }
-        })
-    } catch (error) {
-        console.log('Erro no trEventlistener:', error)
-    }
+        closeButton.addEventListener("click", hideContextMenu);
+        document.addEventListener("click", hideContextMenu);
+
+        //Fecha o context-menu quando aperta esc
+        document.addEventListener("keydown", (event) => {
+          if (event.key === "Escape") {
+            hideContextMenu();
+          }
+        });
+      });
+      function hideContextMenu() {
+        contextMenu.style.display = "none";
+        document.removeEventListener("click", hideContextMenu);
+      }
+    });
+  } catch (error) {
+    console.log("Erro no trEventlistener:", error);
+  }
 }
 
 export function tableObserver() {
-    const tables = [document.querySelector('#Dashboard9902-Chamados-N2'), document.querySelector('#Dashboard9906-Chamados-Pendentes')]
-    Array.from(tables).forEach(table => {
-        try {
-            trEventlistener(table)
-            addVerifyAllLink(table)
+  const tables = [
+    document.querySelector("#Dashboard9902-Chamados-N2"),
+    document.querySelector("#Dashboard9906-Chamados-Pendentes"),
+  ];
+  Array.from(tables).forEach((table) => {
+    try {
+      trEventlistener(table);
+      addVerifyAllLink(table);
 
-            // Cria uma nova instância do MutationObserver
-            const observer = new MutationObserver(() => {
-                trEventlistener(table)
-                addVerifyAllLink(table)
-            })
+      // Cria uma nova instância do MutationObserver
+      const observer = new MutationObserver(() => {
+        trEventlistener(table);
+        addVerifyAllLink(table);
+      });
 
-            // Define as opções do MutationObserver
-            const config = { attributes: true, childList: true, subtree: true }
+      // Define as opções do MutationObserver
+      const config = { attributes: true, childList: true, subtree: true };
 
-            // Inicia a observação do elemento HTML com as opções definidas
-            observer.observe(table, config)
-        } catch (error) {
-            console.log('Erro no Observer:', error)
-        }
-    })
+      // Inicia a observação do elemento HTML com as opções definidas
+      observer.observe(table, config);
+    } catch (error) {
+      console.log("Erro no Observer:", error);
+    }
+  });
 }
 
 export function injectContextMenu() {
-    const html = `
+  const html = `
     <div id="context-menu">
         <div id="close-menu-button">
             <span>x</span>
         </div>
-        <ul id="menu-list">
-            <li id="load-page"><a id="link-chamado" target="_blank">Em atendimento</a></li>
+        <ul id="menu-list"> Em atendimento
+            <li id="load-page"><a id="link-chamado-presencial" target="_blank">Presencial</a></li>
+            <li id="load-page"><a id="link-chamado-remoto" target="_blank">Remoto</a></li>
         </ul>
     </div>
-    `
+    `;
 
-    const body = document.getElementsByTagName('body')[0]
-    body.insertAdjacentHTML('beforeend', html)
+  const body = document.getElementsByTagName("body")[0];
+  body.insertAdjacentHTML("beforeend", html);
 }

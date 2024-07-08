@@ -81,7 +81,9 @@ export function icVerifier(content) {
 
 export function homePageVerifier() {
   try {
-    return document.querySelector('#nav-Dashboard').classList.contains('Selected')
+    return document
+      .querySelector("#nav-Dashboard")
+      .classList.contains("Selected");
   } catch (error) {
     return false;
   }
@@ -98,18 +100,28 @@ export function setPanelInfo(state) {
 export function addNoteLink() {
   window.onload = () => {
     try {
-      let link = document.querySelector('#nav-Note').querySelector('a').href
+      let link = document.querySelector("#nav-Note").querySelector("a").href;
       if (link) {
-        let li = document.createElement('li')
-        let a = document.createElement('a')
-  
-        a.href = link.replace('Zoom', 'Note') + ';AddNoteAuto'
-        a.textContent = 'Em atendimento'
-        li.append(a)
-        document.querySelector('.Actions').append(li)
+        let liPresencial = document.createElement("li");
+        let aPresencial = document.createElement("a");
+
+        aPresencial.href =
+          link.replace("Zoom", "Note") + ";AddNoteAuto;TypeOfService=P";
+        aPresencial.textContent = "Atendimento presencial";
+        liPresencial.append(aPresencial);
+        document.querySelector(".Actions").append(liPresencial);
+
+        let liRemoto = document.createElement("li");
+        let aRemoto = document.createElement("a");
+
+        aRemoto.href =
+          link.replace("Zoom", "Note") + ";AddNoteAuto;TypeOfService=R";
+        aRemoto.textContent = "Atendimento remoto";
+        liRemoto.append(aRemoto);
+        document.querySelector(".Actions").append(liRemoto);
       }
     } catch (error) {
-      console.log('Não foi possível criar o link "Em atendimento".', error)
+      console.log('Não foi possível criar o link "Em atendimento".', error);
     }
-  }
+  };
 }

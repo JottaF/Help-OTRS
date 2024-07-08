@@ -335,6 +335,7 @@ body {
     border-radius: 6px;
     padding: 10px;
     z-index: 999999;
+    padding-right: 26px;
 }
 
 #context-menu ul {
@@ -346,6 +347,7 @@ body {
 #context-menu li {
     padding: 5px 0;
     cursor: pointer;
+    margin-left: 12px;
 }
 
 #context-menu li:hover a {
